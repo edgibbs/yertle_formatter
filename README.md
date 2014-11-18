@@ -1,4 +1,5 @@
 # YertleFormatter
+[![Build Status](https://travis-ci.org/edgibbs/yertle_formatter.svg?branch=master)](https://travis-ci.org/edgibbs/yertle_formatter)
 
 TODO: Write a gem description
 
