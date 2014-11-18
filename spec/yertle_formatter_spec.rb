@@ -16,7 +16,7 @@ describe YertleFormatter do
     end
 
     it "displays a turtle emoji" do
-      expect(output).to receive(:print).with("\u{1f422}")
+      expect(output).to receive(:print).with("\u{1f422} ")
       formatter.example_passed(notification)
     end
   end
