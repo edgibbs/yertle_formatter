@@ -5,7 +5,7 @@ describe YertleFormatter do
   let(:notification) { double }
   let(:execution_result) { double }
   let(:example) { double }
-  let(:metadata) { { :execution_result => execution_result } }
+  let(:metadata) { { execution_result: execution_result } }
   let(:formatter) { YertleFormatter.new(output) }
 
   context "with slow tests" do
