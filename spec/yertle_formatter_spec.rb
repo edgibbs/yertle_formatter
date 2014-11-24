@@ -8,7 +8,7 @@ describe YertleFormatter do
   let(:metadata) { { execution_result: execution_result } }
   let(:formatter) { YertleFormatter.new(output) }
 
-  context "with slow tests" do
+  context "with slow tests" do 
     before do
       allow(notification).to receive(:example) { example }
       allow(example).to receive(:metadata) { metadata }
