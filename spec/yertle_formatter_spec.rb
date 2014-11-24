@@ -2,9 +2,9 @@ require "spec_helper"
 
 describe YertleFormatter do
   let(:output) { StringIO.new }
-  let(:notification) { double }
-  let(:execution_result) { double }
-  let(:example) { double }
+  let(:notification) { instance_double("RSpec::Core::Notifications::ExampleNotification") }
+  let(:execution_result) { instance_double("RSpec::Core::Example::ExecutionResult") }
+  let(:example) { instance_double("RSpec::Core::Example") }
   let(:metadata) { { execution_result: execution_result } }
   let(:formatter) { YertleFormatter.new(output) }
 
