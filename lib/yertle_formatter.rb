@@ -14,6 +14,7 @@ class YertleFormatter < RSpec::Core::Formatters::BaseTextFormatter
   end
 
   def dump_summary(summary_notification)
+    super(summary_notification)
     output.puts "\n------"
     summary_notification.examples.each do |example|
       output.puts example.metadata[:execution_result].run_time if slow_spec?(example)

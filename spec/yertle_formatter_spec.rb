@@ -40,14 +40,16 @@ describe YertleFormatter do
     let(:fast_example) { instance_double("RSpec::Core::Example") }
     let(:fast_execution_result) { instance_double("RSpec::Core::Example::ExecutionResult") }
     let(:fast_metadata) { { execution_result: fast_execution_result } }
-
     let(:slow_example) { instance_double("RSpec::Core::Example") }
     let(:slow_execution_result) { instance_double("RSpec::Core::Example::ExecutionResult") }
     let(:slow_metadata) { { execution_result: slow_execution_result } }
     let(:summary_notification) { instance_double("RSpec::Core::Notifications::SummaryNotification") }
+    let(:default_summary) { "fully formatted" }
 
     context "with slow tests" do
       before do
+        allow(summary_notification).to receive(:fully_formatted) { default_summary }
+        allow(output).to receive(:puts).with(default_summary)
         allow(summary_notification).to receive(:examples) { [fast_example, slow_example] }
         allow(fast_example).to receive(:metadata) { fast_metadata }
         allow(fast_execution_result).to receive(:run_time) { 0.01 }
@@ -55,7 +57,8 @@ describe YertleFormatter do
         allow(slow_execution_result).to receive(:run_time) { 0.2 }
       end
 
-      it "displays a list of the slow tests" do
+      it "displays a list of the slow tests after the default summary" do
+        expect(output).to receive(:puts).with(default_summary)
         expect(output).to receive(:puts).with("\n------")
         expect(output).to receive(:puts).with(0.2)
         formatter.dump_summary(summary_notification)
