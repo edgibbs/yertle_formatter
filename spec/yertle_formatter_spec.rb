@@ -54,6 +54,19 @@ describe YertleFormatter do
       it_behaves_like "a fast test", 0.1
     end
 
+    context "with YERTLE_SLOW_TIME and yertle_slow_time configured" do
+      before do
+        ENV["YERTLE_SLOW_TIME"] = "0.4"
+        RSpec.configuration.yertle_slow_time = 0.1
+      end
+
+      context "uses the environment variable setting" do
+        it_behaves_like "a slow test", 0.5
+
+        it_behaves_like "a fast test", 0.3
+      end
+    end
+
     context "with no yertle_slow_time or YERTLE_SLOW_TIME configured" do
       it_behaves_like "a slow test", 0.2
 
