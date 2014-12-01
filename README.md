@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/edgibbs/yertle_formatter.svg?branch=master)](https://travis-ci.org/edgibbs/yertle_formatter)
 [![Coverage Status](https://img.shields.io/coveralls/edgibbs/yertle_formatter.svg)](https://coveralls.io/r/edgibbs/yertle_formatter?branch=master)
 [![Code Climate](https://codeclimate.com/github/edgibbs/yertle_formatter/badges/gpa.svg)](https://codeclimate.com/github/edgibbs/yertle_formatter)
+[![PullReview stats](https://www.pullreview.com/github/edgibbs/yertle_formatter/badges/master.svg?)](https://www.pullreview.com/github/edgibbs/yertle_formatter/reviews/master)
 
 TODO: Write a gem description
 
