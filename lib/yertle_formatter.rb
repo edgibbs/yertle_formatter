@@ -34,7 +34,7 @@ class YertleFormatter < RSpec::Core::Formatters::BaseTextFormatter
   end
 
   def threshold
-    return slow_time_environment_variable || RSpec.configuration.yertle_slow_time || 0.1
+    slow_time_environment_variable || RSpec.configuration.yertle_slow_time || 0.1
   end
 
   def slow_time_environment_variable
