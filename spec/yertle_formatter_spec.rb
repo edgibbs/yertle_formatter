@@ -25,6 +25,7 @@ describe YertleFormatter do
 
   before do
     RSpec.configuration.yertle_slow_time = nil
+    ENV.delete("YERTLE_SLOW_TIME")
   end
 
   describe "#example_passed" do
@@ -33,7 +34,17 @@ describe YertleFormatter do
       allow(notification).to receive(:example) { example }
     end
 
-    context "with yertle slow time configured" do
+    context "with YERTLE_SLOW_TIME configured" do
+      before do
+        ENV["YERTLE_SLOW_TIME"] = "0.4"
+      end
+
+      it_behaves_like "a slow test", 0.5
+
+      it_behaves_like "a fast test", 0.3
+    end
+
+    context "with yertle_slow_time configured" do
       before do
         RSpec.configuration.yertle_slow_time = 0.2
       end
@@ -43,7 +54,7 @@ describe YertleFormatter do
       it_behaves_like "a fast test", 0.1
     end
 
-    context "with no yertle slow time configured" do
+    context "with no yertle_slow_time or YERTLE_SLOW_TIME configured" do
       it_behaves_like "a slow test", 0.2
 
       it_behaves_like "a fast test", 0.01
