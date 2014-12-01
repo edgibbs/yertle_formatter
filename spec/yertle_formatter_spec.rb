@@ -1,5 +1,21 @@
 require "spec_helper"
 
+shared_examples "a slow test" do |run_time|
+  it "displays a turtle emoji" do
+    execution_result.send(:run_time=, run_time)
+    formatter.example_passed(notification)
+    expect(output.string).to eq("\u{1f422} ")
+  end
+end
+
+shared_examples "a fast test" do |run_time|
+  it "displays the default dot" do
+    execution_result.send(:run_time=, run_time)
+    expect(output).to receive(:print).with(".")
+    formatter.example_passed(notification)
+  end
+end
+
 describe YertleFormatter do
   let(:output) { StringIO.new }
   let(:formatter) { YertleFormatter.new(output) }
@@ -7,26 +23,30 @@ describe YertleFormatter do
   let(:execution_result) { RSpec::Core::Example::ExecutionResult.new }
   let(:example) { RSpec::Core::Example.new(RSpec::Core::AnonymousExampleGroup, "description", {}) }
 
+  before do
+    RSpec.configuration.yertle_slow_time = nil
+  end
+
   describe "#example_passed" do
     before do
       allow(example).to receive(:metadata) { { execution_result: execution_result } }
       allow(notification).to receive(:example) { example }
     end
 
-    context "with a slow test" do
-      it "displays a turtle emoji" do
-        execution_result.send(:run_time=, 0.2)
-        formatter.example_passed(notification)
-        expect(output.string).to eq("\u{1f422} ")
+    context "with yertle slow time configured" do
+      before do
+        RSpec.configuration.yertle_slow_time = 0.2
       end
+
+      it_behaves_like "a slow test", 0.3
+
+      it_behaves_like "a fast test", 0.1
     end
 
-    context "with a fast test" do
-      it "displays the default dot" do
-        execution_result.send(:run_time=, 0.01)
-        expect(output).to receive(:print).with(".")
-        formatter.example_passed(notification)
-      end
+    context "with no yertle slow time configured" do
+      it_behaves_like "a slow test", 0.2
+
+      it_behaves_like "a fast test", 0.01
     end
   end
 

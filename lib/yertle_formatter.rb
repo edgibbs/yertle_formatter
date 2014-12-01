@@ -1,8 +1,6 @@
 require "rspec/core/formatters/base_text_formatter"
 
 class YertleFormatter < RSpec::Core::Formatters::BaseTextFormatter
-  THRESHOLD = 0.1
-
   RSpec::Core::Formatters.register self, :example_passed, :dump_summary
 
   def example_passed(notification)
@@ -24,7 +22,7 @@ class YertleFormatter < RSpec::Core::Formatters::BaseTextFormatter
   private
 
   def slow_spec?(example)
-    example.metadata[:execution_result].run_time > THRESHOLD
+    example.metadata[:execution_result].run_time > threshold
   end
 
   def print_turtle
@@ -33,5 +31,13 @@ class YertleFormatter < RSpec::Core::Formatters::BaseTextFormatter
 
   def print_dot
     output.print "."
+  end
+
+  def threshold
+    if RSpec.configuration.yertle_slow_time
+      RSpec.configuration.yertle_slow_time
+    else
+      0.1
+    end
   end
 end
