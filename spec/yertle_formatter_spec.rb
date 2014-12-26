@@ -6,6 +6,12 @@ shared_examples "a slow test" do |run_time|
     formatter.example_passed(notification)
     expect(output.string).to eq("\u{1f422} ")
   end
+
+  it "sets slow specs flag to true" do
+    execution_result.send(:run_time=, run_time)
+    formatter.example_passed(notification)
+    expect(formatter.slow_specs).to be true
+  end
 end
 
 shared_examples "a fast test" do |run_time|
@@ -13,6 +19,12 @@ shared_examples "a fast test" do |run_time|
     execution_result.send(:run_time=, run_time)
     expect(output).to receive(:print).with(".")
     formatter.example_passed(notification)
+  end
+
+  it "leaves slow specs flag as false" do
+    execution_result.send(:run_time=, run_time)
+    formatter.example_passed(notification)
+    expect(formatter.slow_specs).to be_falsey
   end
 end
 
@@ -104,6 +116,7 @@ Finished in 9 seconds (files took 5 seconds to load)
       end
 
       before do
+        formatter.instance_variable_set(:@slow_specs, true)
         allow(fast_example).to receive(:metadata) { fast_metadata }
         fast_execution_result.send(:run_time=, 0.01)
         allow(slow_example).to receive(:metadata) { slow_metadata }
@@ -122,8 +135,6 @@ Finished in 9 seconds (files took 5 seconds to load)
 
 Finished in 9 seconds (files took 5 seconds to load)
 2 examples, 0 failures
-
-------
         FINAL_OUTPUT
       end
 
