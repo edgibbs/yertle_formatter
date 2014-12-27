@@ -93,9 +93,12 @@ describe YertleFormatter do
     let(:slow_example) { RSpec::Core::Example.new(RSpec::Core::AnonymousExampleGroup, "Slow Test Description", {}) }
     let(:slow_execution_result) { RSpec::Core::Example::ExecutionResult.new }
     let(:slow_metadata) { { execution_result: slow_execution_result } }
+    let(:slower_example) { RSpec::Core::Example.new(RSpec::Core::AnonymousExampleGroup, "Slower Test Description", {}) }
+    let(:slower_execution_result) { RSpec::Core::Example::ExecutionResult.new }
+    let(:slower_metadata) { { execution_result: slower_execution_result } }
     let(:summary_notification) do
       notification = RSpec::Core::Notifications::SummaryNotification.new
-      notification.examples = [fast_example, slow_example]
+      notification.examples = [fast_example, slow_example, slower_example]
       notification.duration = 9
       notification.load_time = 5
       notification.failed_examples = []
@@ -108,9 +111,11 @@ describe YertleFormatter do
         <<-FINAL_OUTPUT
 
 Finished in 9 seconds (files took 5 seconds to load)
-2 examples, 0 failures
+3 examples, 0 failures
 
 ------
+" Slower Test Description" 0.3 seconds
+./spec/yertle_formatter_spec.rb:96
 " Slow Test Description" 0.2 seconds
 ./spec/yertle_formatter_spec.rb:93
         FINAL_OUTPUT
@@ -122,9 +127,11 @@ Finished in 9 seconds (files took 5 seconds to load)
         fast_execution_result.send(:run_time=, 0.01)
         allow(slow_example).to receive(:metadata) { slow_metadata }
         slow_execution_result.send(:run_time=, 0.2)
+        allow(slower_example).to receive(:metadata) { slower_metadata }
+        slower_execution_result.send(:run_time=, 0.3)
       end
 
-      it "displays a list of the slow tests after the default summary" do
+      it "displays a sorted list of the slow tests after the default summary" do
         formatter.dump_summary(summary_notification)
         expect(output.string).to eq(final_output)
       end
