@@ -87,10 +87,10 @@ describe YertleFormatter do
   end
 
   describe "#dump_summary" do
-    let(:fast_example) { RSpec::Core::Example.new(RSpec::Core::AnonymousExampleGroup, "description", {}) }
+    let(:fast_example) { RSpec::Core::Example.new(RSpec::Core::AnonymousExampleGroup, "Fast Test Description", {}) }
     let(:fast_execution_result) { RSpec::Core::Example::ExecutionResult.new }
     let(:fast_metadata) { { execution_result: fast_execution_result } }
-    let(:slow_example) { RSpec::Core::Example.new(RSpec::Core::AnonymousExampleGroup, "description", {}) }
+    let(:slow_example) { RSpec::Core::Example.new(RSpec::Core::AnonymousExampleGroup, "Slow Test Description", {}) }
     let(:slow_execution_result) { RSpec::Core::Example::ExecutionResult.new }
     let(:slow_metadata) { { execution_result: slow_execution_result } }
     let(:summary_notification) do
@@ -111,7 +111,8 @@ Finished in 9 seconds (files took 5 seconds to load)
 2 examples, 0 failures
 
 ------
-0.2
+" Slow Test Description" 0.2 seconds
+./spec/yertle_formatter_spec.rb:93
         FINAL_OUTPUT
       end
 

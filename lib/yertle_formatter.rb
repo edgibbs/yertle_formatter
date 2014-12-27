@@ -44,7 +44,11 @@ class YertleFormatter < RSpec::Core::Formatters::BaseTextFormatter
   def summarize_slow_specs(summary_notification)
     output.puts "\n------"
     summary_notification.examples.each do |example|
-      output.puts example.metadata[:execution_result].run_time if slow_spec?(example)
+      slow_test_description = <<-SLOW_TEST_OUTPUT
+"#{example.full_description}" #{example.metadata[:execution_result].run_time} seconds
+#{example.location}
+      SLOW_TEST_OUTPUT
+      output.puts slow_test_description if slow_spec?(example)
     end
   end
 end
