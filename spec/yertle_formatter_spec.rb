@@ -152,7 +152,7 @@ Finished in 9 seconds (files took 5 seconds to load)
         fast_execution_result.send(:run_time=, 0.01)
       end
 
-      it "displays just the default summary and a seperator" do
+      it "displays just the default summary and a separator" do
         formatter.dump_summary(summary_notification)
         expect(output.string).to eq(final_output)
       end
