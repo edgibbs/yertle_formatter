@@ -14,7 +14,7 @@ Basic usage is like any other RSpec formatter:
 
 Or to make it the default add the following to your .rspec file:
 
-    --format YertleFormatter
+    require --format YertleFormatter
 
 It defaults to defining slow specs as slower than 0.2 seconds.  You can modify this setting in by setting an environment varaible:
 
