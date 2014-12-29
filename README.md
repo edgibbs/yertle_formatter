@@ -6,7 +6,7 @@
 
 ![Yertle Screen Shot](yertle_screenshot.png)
 
-An RSpec 3 formatter for highlighting slow specs.  Slow specs are marked with turtles and a summary of slow specs are returned at the end of the run.
+An RSpec 3 formatter for highlighting slow specs.  Slow specs are marked with turtles (:turtle:) and a summary of slow specs are returned at the end of the run.
 
 ## Usage
 
