@@ -4,6 +4,8 @@
 [![Code Climate](https://codeclimate.com/github/edgibbs/yertle_formatter/badges/gpa.svg)](https://codeclimate.com/github/edgibbs/yertle_formatter)
 [![PullReview stats](https://www.pullreview.com/github/edgibbs/yertle_formatter/badges/master.svg?)](https://www.pullreview.com/github/edgibbs/yertle_formatter/reviews/master)
 
+![Yertle Screen Shot][yertle_screenshot.png]
+
 An RSpec 3 formatter for highlighting slow specs.  Slow specs are marked with turtles and a summary of slow specs are returned at the end of the run.
 
 ## Usage
