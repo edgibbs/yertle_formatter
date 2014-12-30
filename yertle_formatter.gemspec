@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "yertle_formatter"
   spec.version       = VERSION
   spec.authors       = ["Ed Gibbs"]
-  spec.email         = ["edgibbs@yahoo.com"]
-  spec.summary       = %q{An RSpec formatter highlighing slow specs.}
-  spec.description   = %q{Another whimsical formatter in the tradition of NyanCatFormatter.}
-  spec.homepage      = ""
+  spec.email         = ["edward_gibbs@yahoo.com"]
+  spec.summary       = %q{An RSpec 3 formatter highlighting slow specs.}
+  spec.description   = %q{Slow specs are marked with turtles and a summary of slow specs are returned at the end of the run.}
+  spec.homepage      = "https://github.com/edgibbs/yertle_formatter"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
