@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Slow specs are marked with turtles and a summary of slow specs are returned at the end of the run.}
   spec.homepage      = "https://github.com/edgibbs/yertle_formatter"
   spec.license       = "MIT"
-  spec.required_version = ">= 1.9.3"
+  spec.required_ruby_version = ">= 1.9.3"
 
   spec.files         = `git ls-files -z`.split("\x0")
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
