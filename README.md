@@ -19,11 +19,11 @@ Or to make it the default add the following to your .rspec file:
 
     require --format YertleFormatter
 
-It defaults to defining slow specs as slower than 0.2 seconds.  You can modify this by setting an environment varaible:
+It defaults to defining slow specs as running longer than 0.2 seconds.  You can modify this by setting an environment variable:
 
     YERTLE_SLOW_TIME=1.0
 
-Or you can add the use a configurable flag for yertle_slow_time in your RSpec configuration:
+Or you can add the configurable flag, yertle_slow_time, in your RSpec configuration:
 
 ```ruby
 RSpec.configure do |config|
