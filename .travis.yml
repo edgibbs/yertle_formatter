@@ -4,7 +4,6 @@ rvm:
   - "2.2"
   - "2.1.5"
   - "2.0.0-p598"
-  - "1.9.3-p551"
 script: bundle exec rspec spec
 sudo: false
 cache: bundler
