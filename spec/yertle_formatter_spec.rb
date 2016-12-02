@@ -114,9 +114,9 @@ Finished in 9 seconds (files took 5 seconds to load)
 3 examples, 0 failures
 
 ------
-" Slower Test Description" 0.3 seconds
+"Slower Test Description" 0.3 seconds
 ./spec/yertle_formatter_spec.rb:96
-" Slow Test Description" 0.2 seconds
+"Slow Test Description" 0.2 seconds
 ./spec/yertle_formatter_spec.rb:93
         FINAL_OUTPUT
       end
